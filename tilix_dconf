@@ -1,0 +1,138 @@
+[Tilix/profiles]
+default='2b7c4080-0ddd-46c5-8f23-563fd3ba789d'
+list=['2b7c4080-0ddd-46c5-8f23-563fd3ba789d', '9b84b145-27e6-47c9-a3e5-8ff7e9f1fb96', '943e6a56-d183-414a-b867-8d32c9f552d9', '1db588d2-861f-4b26-b7e7-993a46e2d09c']
+
+[Tilix/profiles/1db588d2-861f-4b26-b7e7-993a46e2d09c]
+foreground-color='#555557575353'
+visible-name='Präsentation'
+palette=['#000000', '#AA0000', '#00AA00', '#AA5400', '#0000AA', '#AA00AA', '#00AAAA', '#AAAAAA', '#545454', '#FF5454', '#7373D2D21616', '#C4C4A0A00000', '#5454FF', '#FF54FF', '#54FFFF', '#FFFFFF']
+badge-color-set=false
+show-scrollbar=false
+cursor-shape='underline'
+cursor-colors-set=false
+highlight-colors-set=false
+use-system-font=false
+bold-color-set=false
+font='Liberation Mono 16'
+use-theme-colors=false
+background-color='#FFFFFFFFFFFF'
+
+[Tilix/profiles/9b84b145-27e6-47c9-a3e5-8ff7e9f1fb96]
+cursor-shape='underline'
+cursor-colors-set=false
+bold-color-set=false
+terminal-bell='sound'
+scroll-on-keystroke=true
+cjk-utf8-ambiguous-width='narrow'
+default-size-rows=24
+encoding='UTF-8'
+triggers=@as []
+automatic-switch=@as []
+custom-command=''
+badge-use-system-font=true
+text-blink-mode='always'
+visible-name='monokai'
+palette=['#272822', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F8F8F2', '#75715E', '#F92672', '#A6E22E', '#F4BF75', '#66D9EF', '#AE81FF', '#A1EFE4', '#F9F8F5']
+use-theme-colors=false
+cell-height-scale=1.0
+badge-text=''
+exit-action='close'
+shortcut='disabled'
+backspace-binding='ascii-delete'
+rewrap-on-resize=true
+foreground-color='#F8F8F2'
+login-shell=false
+use-system-font=false
+background-transparency-percent=0
+terminal-title='${id}: ${title}'
+cursor-blink-mode='system'
+dim-transparency-percent=13
+bold-is-bright=true
+cell-width-scale=1.0
+default-size-columns=80
+draw-margin=80
+cursor-foreground-color='#ffffff'
+allow-bold=true
+badge-font='Monospace 12'
+notify-silence-threshold=3600
+background-color='#272822'
+badge-color='#ffffff'
+highlight-foreground-color='#ffffff'
+font='Monaco 11'
+delete-binding='delete-sequence'
+notify-silence-enabled=false
+badge-position='northeast'
+custom-hyperlinks=@as []
+scrollback-unlimited=false
+cursor-background-color='#000000'
+highlight-background-color='#000000'
+scroll-on-output=false
+select-by-word-chars='-,./?%&#:_'
+use-custom-command=false
+badge-color-set=false
+bold-color='#ffffff'
+highlight-colors-set=false
+scrollback-lines=8192
+show-scrollbar=false
+
+[Tilix/profiles/2b7c4080-0ddd-46c5-8f23-563fd3ba789d]
+foreground-color='#EEEECFCF7B7B'
+visible-name='solarized grey'
+palette=['#073642', '#DC322F', '#859900', '#B58900', '#268BD2', '#D33682', '#2AA198', '#EEE8D5', '#002B36', '#CB4B16', '#586E75', '#657B83', '#839496', '#6C71C4', '#93A1A1', '#FDF6E3']
+badge-color-set=false
+show-scrollbar=false
+cursor-shape='underline'
+cursor-colors-set=false
+highlight-colors-set=false
+use-system-font=false
+bold-color-set=false
+font='Liberation Mono 11'
+use-theme-colors=false
+notify-silence-enabled=false
+notify-silence-threshold=3600
+background-color='#303030303030'
+background-transparency-percent=0
+dim-transparency-percent=13
+
+[Tilix/profiles/943e6a56-d183-414a-b867-8d32c9f552d9]
+foreground-color='#657B83'
+visible-name='solarized light'
+palette=['#073642', '#DC322F', '#859900', '#B58900', '#268BD2', '#D33682', '#2AA198', '#EEE8D5', '#002B36', '#CB4B16', '#586E75', '#657B83', '#839496', '#6C71C4', '#93A1A1', '#FDF6E3']
+badge-color-set=false
+show-scrollbar=false
+cursor-colors-set=false
+highlight-colors-set=false
+use-theme-colors=false
+bold-color-set=false
+background-color='#FDF6E3'
+
+[Tilix]
+prompt-on-close=true
+quake-specific-monitor=0
+menu-accelerator-enabled=false
+middle-click-close=true
+quake-height-percent=35
+tab-position='bottom'
+sidebar-on-right=false
+auto-hide-mouse=true
+background-image-mode='tile'
+prompt-on-close-process=false
+terminal-title-style='none'
+session-name='${title}'
+theme-variant='dark'
+unsafe-paste-alert=false
+enable-wide-handle=false
+use-tabs=true
+terminal-title-show-when-single=true
+window-style='disable-csd-hide-toolbar'
+
+[Tilix/keybindings]
+session-switch-to-next-terminal='disabled'
+terminal-paste='<Primary><Alt>v'
+win-switch-to-previous-session='<Primary>Page_Up'
+terminal-insert-password='F2'
+session-add-right='<Primary><Alt>less'
+session-add-down='<Primary><Alt>minus'
+app-new-session='<Primary>t'
+terminal-maximize='<Primary><Alt>plus'
+session-name='<Primary><Alt>comma'

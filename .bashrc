@@ -1,26 +1,16 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-export DEBEMAIL='ahlers@univention.de'
-export DEBFULLNAME='Jannik Ahlers'
-
-export PATH=$PATH':~/toolshed/toolshed'
-
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+	*i*) ;;
+	  *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# history length
 HISTSIZE=1000
 HISTFILESIZE=2000
 
@@ -30,143 +20,45 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+# enable programmable completion features
+if ! shopt -oq posix; then
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
+fi
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
+#GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS=1
 PROMPT_DIRTRIM=3
 seed=$(hostname -f | md5sum | tr -dc '1234567')
 hc1=${seed:1:1}
-hc2=${seed:2:1}
-#PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
-git1="\$(__git_ps1 ' \[\e[01;36m\](%s)\[\e[00m\]')"
-PS1=" \${debian_chroot:+\[\e[01;31m\](\$debian_chroot)}\[\e[01;32m\]\t \[\e[00;32m\](?\$? J\j)${git1}\[\e[00m\]\\n \[\e[01;32m\]\u\[\e[00m\]@\[\e[01;3${hc1}m\]\h\[\e[00m\]:\[\e[01;32m\]\w\[\e[00m\] \$ "
-PS2='> '
-PS3='> '
-PS4='+ '
+#git1="\$(__git_ps1 ' \[\e[01;36m\](%s)\[\e[00m\]')"
+#export PS1=" \${debian_chroot:+\[\e[01;31m\](\$debian_chroot)}\[\e[01;32m\]\t \[\e[00;32m\](?\$? J\j)${git1}\[\e[00m\]\\n \[\e[01;32m\]\u\[\e[00m\]@\[\e[01;3${hc1}m\]\h\[\e[00m\]:\[\e[01;32m\]\w\[\e[00m\] \$ "
+export PS2='> '
+export PS3='> '
+export PS4='+ '
+PROMPT_COMMAND='__git_ps1 " \${debian_chroot:+\[\e[01;31m\](\$debian_chroot)}\[\e[01;32m\]\t \[\e[00;32m\](?\$? J\j)" "\[\e[00m\]\\n \[\e[01;32m\]\u\[\e[00m\]@\[\e[01;3${hc1}m\]\h\[\e[00m\]:\[\e[01;32m\]\w\[\e[00m\] \$ " " \[\e[01;36m\](%s\[\e[01;36m\])"'
 
 # cursor color
 printf '%b' '\e]12;white\a'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ..='cd ..'
-alias ~='cd ~'
-alias work='cd /home/jahlers/work/ucs'
-alias calc='gcalccmd'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
-
-# Start Tmux by default
-# If not running interactively, do not do anything
-if command -v tmux>/dev/null; then
-	[[ ! $TERM =~ screen ]] && [ -z $TMUX ] && exec tmux
-fi
-
-# Powerline
-# if [ -f /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh ]; then
-#	source /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
-#fi
-
-alias xg="xgettext --force-po --from-code=UTF-8 --sort-output --msgid-bugs-address=packages@univention.de --copyright-holder='Univention GmbH'"
-function mkpo() {
-    if [ ! -d ./umc ]; then
-        echo 'no UMC dir';
-        return 1;
-    fi
-    if [ ! -d ./umc/js ]; then
-        # frontend
-        xg  --language python -o message.po $(find umc -name '*.js') index.html error.html univention-management-console-web-server && msgmerge --update --sort-output umc/de.po message.po && rm -f message.po
-        return
-    fi
-    xg --language JavaScript -o message.po $(find umc -name '*.js') && msgmerge --update --sort-output umc/js/de.po message.po && rm -f message.po
-    xg --language python -o message.po $(find umc -name '*.py') && msgmerge --update --sort-output "$(find umc/python/ -name 'de.po')" message.po && rm -f message.po
-}
 export TERM=xterm-256color
